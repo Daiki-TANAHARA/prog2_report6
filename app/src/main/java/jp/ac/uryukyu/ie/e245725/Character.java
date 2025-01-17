@@ -4,6 +4,10 @@ public class Character {
     int x;
     int y;
 
+    //public String putStone(String stone) {
+        
+    
+
     
     
     
