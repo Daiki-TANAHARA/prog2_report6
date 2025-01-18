@@ -1,8 +1,11 @@
 package jp.ac.uryukyu.ie.e245725;
 
+import java.util.ArrayList;
+
 public abstract class Character {
     private int x;
     private int y;
+    Stone stone = new Stone();
     //private StoneCheck stoneCheck = new StoneCheck();
 
     public int getX() {
@@ -21,9 +24,10 @@ public abstract class Character {
         this.y = Y;
     }
     
-    /*public StoneCheck getStoneCheck() {
-        return this.stoneCheck;
-    }*/
+    public ArrayList<ArrayList<Integer>> useInvestigate( String[][] board, String pstone, String ostone) {
+        return stone.investigate(board, pstone, ostone);
+        
+    }
 
     public abstract void putStone( String[][] board );
 

@@ -8,13 +8,12 @@ public class Game {
         board.getBoard();
 
         Player player = new Player();
-        player.putStone(board.getBoard());
-        board.displayBoard();
+        player.findMoves(board.getBoard());
         player.putStone(board.getBoard());
         board.displayBoard();
 
         Opponent opponent = new Opponent();
-        opponent.investigate(board.getBoard());
+        opponent.findMoves(board.getBoard());
         opponent.putStone(board.getBoard());
         board.displayBoard();
         
