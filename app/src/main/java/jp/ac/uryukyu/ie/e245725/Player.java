@@ -5,18 +5,16 @@ import java.util.Scanner;
 public class Player extends Character{
     Scanner scanner = new Scanner(System.in);
     private ArrayList<ArrayList<Integer>> canPut = new ArrayList<>();
-    
 
-    public Player() {
-        System.out.println("あなたのターンです。");
-    }
     
     public void findMoves(String[][] boards) {
+        canPut.clear();
         canPut = useInvestigate(boards, "⚪️", "⚫️");
     }
     
     @Override
     public void putStone( String[][] board ) {
+        //System.out.println("canPutの内容: " + canPut);
         boolean Bool = true;
         do {
             do {
@@ -43,7 +41,7 @@ public class Player extends Character{
         } while ( Bool == true);
 
         board[getX()][getY()] = "⚪️";
- 
+        useToChangeStones(board, "⚪️", getX(), getY());
     }
     
 }

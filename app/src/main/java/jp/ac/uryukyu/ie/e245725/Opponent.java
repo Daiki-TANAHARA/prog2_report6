@@ -9,6 +9,7 @@ public class Opponent extends Character {
     
 
     public void findMoves(String[][] boards) {
+        canPut.clear();
         canPut = useInvestigate(boards, "⚫️", "⚪️");
     }
 
@@ -18,6 +19,8 @@ public class Opponent extends Character {
         setX(canPut.get(randomIndex).get(0));
         setY(canPut.get(randomIndex).get(1));
         boards[getX()][getY()] = "⚫️";
+        useToChangeStones(boards, "⚫️", getX(), getY());
+        //System.out.println("canPutの内容: " + canPut);
     }
 
     

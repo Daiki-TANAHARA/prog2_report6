@@ -8,14 +8,18 @@ public class Game {
         board.getBoard();
 
         Player player = new Player();
-        player.findMoves(board.getBoard());
-        player.putStone(board.getBoard());
-        board.displayBoard();
-
         Opponent opponent = new Opponent();
-        opponent.findMoves(board.getBoard());
-        opponent.putStone(board.getBoard());
-        board.displayBoard();
+
+        while ( true ) {
+            player.findMoves(board.getBoard());
+            player.putStone(board.getBoard());
+            board.displayBoard();
+            
+            opponent.findMoves(board.getBoard());
+            opponent.putStone(board.getBoard());
+            board.displayBoard();
+            
+        }
         
     }
 }

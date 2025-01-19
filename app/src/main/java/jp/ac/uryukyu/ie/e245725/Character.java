@@ -6,7 +6,6 @@ public abstract class Character {
     private int x;
     private int y;
     Stone stone = new Stone();
-    //private StoneCheck stoneCheck = new StoneCheck();
 
     public int getX() {
         return this.x;
@@ -24,18 +23,16 @@ public abstract class Character {
         this.y = Y;
     }
     
-    public ArrayList<ArrayList<Integer>> useInvestigate( String[][] board, String pstone, String ostone) {
-        return stone.investigate(board, pstone, ostone);
+    public ArrayList<ArrayList<Integer>> useInvestigate( String[][] board, String ownStone, String opponentStone) {
+        return stone.investigate(board, ownStone, opponentStone);
         
+    }
+
+    public void useToChangeStones( String[][] board, String ownStone, int x, int y ) {
+        stone.toChangeStones(board, ownStone, x, y);
     }
 
     public abstract void putStone( String[][] board );
 
-        
-    
-
-    
-    
-    
     
 }
