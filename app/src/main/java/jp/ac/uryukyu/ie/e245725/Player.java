@@ -7,13 +7,24 @@ public class Player extends Character{
     private ArrayList<ArrayList<Integer>> canPut = new ArrayList<>();
 
     
-    public void findMoves(String[][] boards) {
+    /**
+    * investigate()を使いやすくするメソッド。
+    * ownStone,opponentStoneを指定してメインクラスで混同しないようにする。
+    * @param board ボード
+    */
+    public void findMoves(String[][] board ) {
         canPut.clear();
-        canPut = useInvestigate(boards, "⚪️", "⚫️");
+        canPut = useInvestigate(board, "⚪️", "⚫️");
     }
     
+    /**
+    * Playerが石を置くためのメソッド。
+    * 数値を２つ入力することで石の位置を特定。
+    * @param board ボード
+    */
     @Override
     public void putStone( String[][] board ) {
+        System.out.println("あなたの番です。");
         //System.out.println("canPutの内容: " + canPut);
         boolean Bool = true;
         do {

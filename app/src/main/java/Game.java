@@ -5,7 +5,6 @@ public class Game {
         Board board = new Board(); 
         board.makeBoard(); 
         board.displayBoard();
-        board.getBoard();
 
         Player player = new Player();
         Opponent opponent = new Opponent();
@@ -18,9 +17,7 @@ public class Game {
             opponent.findMoves(board.getBoard());
             opponent.putStone(board.getBoard());
             board.displayBoard();
-            
         }
-        
     }
 }
 

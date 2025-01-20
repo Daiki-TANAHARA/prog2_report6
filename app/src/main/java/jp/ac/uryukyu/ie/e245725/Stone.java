@@ -10,24 +10,31 @@ public class Stone {
     private ArrayList<ArrayList<ArrayList<Integer>>> changeStones = new ArrayList<>();
 
 
-    public ArrayList<ArrayList<Integer>> investigate( String[][] boards, String ownStone, String opponentStone ) {
+    /**
+     * 石が置ける場所を調べてリストを作るメソッド。
+     * @param board　ボード
+     * @param ownStone　自分の石
+     * @param opponentStone 相手の石
+     * @return　ownStoneを置ける場所のリスト
+     */
+    public ArrayList<ArrayList<Integer>> investigate( String[][] board, String ownStone, String opponentStone ) {
         changeStones.clear();
         for ( int x = 0; x < 8; x++ ) {
             for ( int y = 0; y < 8; y++ ) {
-                if ( boards[x][y].equals(ownStone) ) {
+                if ( board[x][y].equals(ownStone) ) {
                     for ( int[] cs : checkSurrounds ) {
                         int newx = x + cs[0] ;
                         int newy = y + cs[1] ;
                         ArrayList<ArrayList<Integer>> childCS1= new ArrayList<>();
                         do {
-                            if ( boards[newx][newy].equals(opponentStone) ) {
+                            if ( board[newx][newy].equals(opponentStone) ) {
                                 ArrayList<Integer> childCS2 = new ArrayList<>();
                                 childCS2.add(newx);
                                 childCS2.add(newy);
                                 childCS1.add(childCS2);
                                 newx += cs[0] ;
                                 newy += cs[1] ;
-                                if ( ( newx >= 0 && newx < 8 ) && ( newy >= 0 && newy < 8 ) && (boards[newx][newy].equals("🟩") ) ) { // 再度範囲チェック
+                                if ( ( newx >= 0 && newx < 8 ) && ( newy >= 0 && newy < 8 ) && (board[newx][newy].equals("🟩") ) ) { // 再度範囲チェック
                                     //System.out.println(boards[newx][newy]);
                                     ArrayList<Integer> childCanPut = new ArrayList<>();
                                     childCanPut.add(newx);
@@ -35,7 +42,7 @@ public class Stone {
                                     canPut.add(childCanPut);
                                     changeStones.add(childCS1);
                                     break;
-                                } else if (( ( newx < 0 || newx >= 8 ) || ( newy < 0 || newy >= 8 ) ) && ( boards[newx][newy].equals(ownStone) ) ) { // 範囲チェック
+                                } else if (( ( newx < 0 || newx >= 8 ) || ( newy < 0 || newy >= 8 ) ) && ( board[newx][newy].equals(ownStone) ) ) { // 範囲チェック
                                     break;
                                 }
                             } else {
@@ -50,6 +57,14 @@ public class Stone {
         return canPut;
     }
 
+    /**
+     * 石を裏返すためのメソッド。
+     * 石を置く座標と一致するものをcanPutから探し、それと同じインデックスでchangeStonesの要素を取り出す。
+     * @param board　ボード
+     * @param ownStone　自分の石
+     * @param x　石を置く場所のx座標
+     * @param y　石を置く場所のy座標
+     */
     public void toChangeStones( String[][] board, String ownStone, int x, int y ) {
         int count = -1;
         for ( ArrayList<Integer> cp : canPut ) {
